@@ -25,6 +25,8 @@ estado VARCHAR(40) NOT NULL
 CREATE TABLE conductores(
 idConductor INT PRIMARY KEY AUTO_INCREMENT,
 nombre VARCHAR(20) NOT NULL,
+numeroEmergencia INT NOTNULL,
+rfc VARCHAR(13) NOT NULL,
 idDomicilio INT NOT NULL
 );
 
@@ -44,7 +46,9 @@ idConductores INT NOT NULL
 CREATE TABLE multas(
 idMulta INT PRIMARY KEY AUTO_INCREMENT,
 fecha DATE NOT NULL,
+fechaLimite DATE NOT NULL,
 hora TIME NOT NULL,
+motivo VARCHAR(40) NOT NULL,
 folio VARCHAR(20) NOT NULL,
 reporteSeccion VARCHAR(100) NOT NULL,
 idTarjetaC INT NOT NULL,
@@ -117,7 +121,8 @@ idPagos INT  NOT NULL
 CREATE TABLE pagos(
 idPago INT PRIMARY KEY AUTO_INCREMENT,
 nombre VARCHAR(20) NOT NULL,
-asignacion VARCHAR(50) NOT NULL
+asignacion VARCHAR(50) NOT NULL,
+monto DOUBLE NOT NULL
 );
 
 -- 1. Propietarios
