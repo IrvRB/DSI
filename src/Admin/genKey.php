@@ -1,16 +1,13 @@
 <?php
-// 1. Validar y proteger la sesión (Garantizar protección estricta)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Bloqueo de seguridad: Si no hay sesión o el usuario NO es Administrador ('A'), se le expulsa
 if (!isset($_SESSION['usuario']) || $_SESSION['tipo'] !== 'A') {
-    header("Location: ../login.php"); // Redirige al login en la carpeta superior
+    header("Location: ../login.php");
     exit;
 }
 
-// 2. Conexión a la Base de Datos utilizando tu alias de Docker
 $conn = new mysqli("db", "root", "root", "ControlVehicular2026");
 
 if ($conn->connect_error) {
@@ -20,7 +17,6 @@ if ($conn->connect_error) {
 $error_message = "";
 $success_message = "";
 
-// 3. PROCESAR EL FORMULARIO (FLUJO DE GENERACIÓN Y DESCARGA)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario_key'])) {
     $usuarioTarget = trim($_POST['usuario_key']);
 
@@ -29,10 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario_key'])) {
             throw new Exception("Por favor, seleccione un usuario válido.");
         }
 
-        // Generar un token criptográficamente seguro y único de 64 caracteres
         $tokenUnico = bin2hex(random_bytes(32));
-
-        // Actualizar el campo 'llave_token' en el registro del usuario seleccionado
         $stmt = $conn->prepare("UPDATE Cuentas SET llave_token = ? WHERE usuario = ?");
         $stmt->bind_param("ss", $tokenUnico, $usuarioTarget);
 
@@ -41,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['usuario_key'])) {
                 $stmt->close();
                 $conn->close();
 
-                // DEFINIR CABECERAS PARA FORZAR LA DESCARGA INMEDIATA DEL ARCHIVO .KEY
                 $nombreArchivo = "llave_acceso_" . $usuarioTarget . ".key";
 
                 header('Content-Type: application/octet-stream');
@@ -78,7 +70,7 @@ $resultado_usuarios = $conn->query($sql_usuarios);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Llaves (.key) - Control Vehicular 2026</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2 family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         body {
@@ -137,7 +129,7 @@ $resultado_usuarios = $conn->query($sql_usuarios);
                             seleccionado.</p>
                     </div>
 
-                    <form action="generar_llave.php" method="POST">
+                    <form action="<?php echo htmlspecialchars(basename($_SERVER['PHP_SELF'])); ?>" method="POST">
                         <div class="mb-4">
                             <label for="usuario_key" class="form-label fw-semibold text-secondary">Seleccionar Cuenta de
                                 Usuario:</label>
@@ -171,19 +163,7 @@ $resultado_usuarios = $conn->query($sql_usuarios);
                     </form>
                 </div>
 
-                <div class="card card-custom shadow-sm p-3 bg-light border">
-                    <h6 class="fw-bold text-dark"><i class="bi bi-info-circle-fill text-info"></i> ¿Cómo usar esta
-                        función?</h6>
-                    <ul class="text-muted small mb-0 ps-3">
-                        [cite_start]<li>Selecciona un usuario de la base de datos y presiona el botón azul[cite: 112].
-                        </li>
-                        [cite_start]<li>El sistema registrará el token de manera invisible y descargará automáticamente
-                            un archivo `.key` en tu computadora[cite: 113].</li>
-                        [cite_start]<li>Entrega el archivo descargado al usuario[cite: 114].</li>
-                        [cite_start]<li>El usuario podrá usar el botón <strong>"Acceder con Llave (.key)"</strong> en la
-                            pantalla de inicio de sesión para entrar de forma automática sin contraseña[cite: 114].</li>
-                    </ul>
-                </div>
+
 
             </div>
         </div>
@@ -194,5 +174,7 @@ $resultado_usuarios = $conn->query($sql_usuarios);
 
 </html>
 <?php
-$conn->close();
+if (isset($conn) && $conn instanceof mysqli && !$conn->connect_error) {
+    @$conn->close();
+}
 ?>
