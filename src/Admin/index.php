@@ -1,224 +1,134 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestión DSI - Inicio</title>
     <link rel="stylesheet" href="DSI30/assets/menu.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        #content {
-            flex: 1;
-            max-width: 1400px;
-            margin: 30px auto;
-            width: 100%;
-            padding: 0 20px;
-        }
-
-        h1 {
-            color: #0d47a1;
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
-
-        .intro {
-            background: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 24px rgba(13, 71, 161, 0.3);
-            border-left: 6px solid #64b5f6;
-        }
-
-        .intro h2 {
-            margin: 0 0 15px 0;
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-
-        .intro p {
             margin: 0;
-            line-height: 1.7;
-            font-size: 1.05rem;
-            opacity: 0.95;
+            padding: 20px;
+            background-color: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
+        #content {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 61, 130, 0.15);
+        }
+        
+        h1 {
+            color: #003D82;
+            border-bottom: 3px solid #0056B3;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
         h2 {
-            color: #0d47a1;
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
+            color: #003D82;
         }
-
+        
+        .intro {
+            background: linear-gradient(135deg, #0056B3 0%, #003D82 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid #1E90FF;
+        }
+        
+        .intro h2 {
+            margin-top: 0;
+            color: white;
+        }
+        
+        .intro p {
+            margin: 10px 0 0 0;
+            line-height: 1.6;
+        }
+        
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
-
+        
         .card {
             background: white;
-            padding: 28px 24px;
-            border-radius: 12px;
-            border: none;
-            border-left: 5px solid #1565c0;
-            box-shadow: 0 2px 8px rgba(13, 71, 161, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #0056B3;
+            box-shadow: 0 2px 8px rgba(0, 61, 130, 0.1);
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             text-decoration: none;
             color: #333;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
+            display: block;
         }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(21, 101, 192, 0.05) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
+        
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 32px rgba(13, 71, 161, 0.2);
-            border-left-color: #64b5f6;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 61, 130, 0.2);
+            border-left-color: #1E90FF;
         }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
+        
         .card h3 {
-            margin: 0 0 12px 0;
-            color: #1565c0;
-            font-size: 1.3rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
+            margin: 0 0 10px 0;
+            color: #0056B3;
+            font-size: 18px;
         }
-
+        
         .card p {
             margin: 0;
             color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
+            font-size: 14px;
+            line-height: 1.5;
         }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
-        }
-
-        .stat-box {
-            background: white;
-            padding: 28px 24px;
-            border-radius: 12px;
-            border-left: 5px solid #1565c0;
-            box-shadow: 0 2px 8px rgba(13, 71, 161, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(13, 71, 161, 0.15);
-        }
-
-        .stat-box h4 {
-            color: #0d47a1;
-            margin: 0 0 12px 0;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
-        }
-
-        .stat-box .number {
-            color: #1565c0;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 0;
-            line-height: 1;
-        }
-
+        
         .footer {
-            margin-top: auto;
-            padding: 30px 20px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
             text-align: center;
             color: #666;
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            background: white;
+            font-size: 12px;
         }
-
-        .footer p {
-            margin: 8px 0;
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
         }
-
-        .footer strong {
-            color: #0d47a1;
+        
+        .stat-box {
+            background: #E3F2FD;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #0056B3;
+            text-align: center;
         }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .intro {
-                padding: 24px;
-            }
-
-            .intro h2 {
-                font-size: 1.4rem;
-            }
-
-            h2 {
-                font-size: 1.4rem;
-            }
-
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        
+        .stat-box h4 {
+            color: #0056B3;
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        
+        .stat-box .number {
+            color: #003D82;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
         }
     </style>
 </head>
@@ -349,14 +259,14 @@
 
     <!-- CONTENIDO PRINCIPAL -->
     <div id="content">
-        <h1>Sistema de Gestión DSI</h1>
+        <h1>Bienvenido al Sistema de Gestión DSI</h1>
         
         <div class="intro">
-            <h2>Bienvenido</h2>
-            <p>Administra de forma centralizada agentes, conductores, vehículos, infracciones y pagos. Selecciona una opción del menú para acceder a los módulos del sistema.</p>
+            <h2>Sistema de Gestión de Infracciones de Tránsito</h2>
+            <p>Administra de forma centralizada agentes, conductores, vehículos, infracciones y pagos. Selecciona una opción del menú para comenzar.</p>
         </div>
         
-        <h2>Acceso Rápido</h2>
+        <h2>Acceso Rápido a Módulos</h2>
         <div class="dashboard">
             <a href="DSI30/Fagente.php" class="card">
                 <h3>Agentes</h3>
@@ -395,31 +305,11 @@
                 <p>Información de propietarios de vehículos</p>
             </a>
         </div>
-
-        <h2>📊 Estadísticas del Sistema</h2>
-        <div class="stats">
-            <div class="stat-box">
-                <h4>Total de Usuarios</h4>
-                <p class="number">245</p>
-            </div>
-            <div class="stat-box">
-                <h4>Multas Registradas</h4>
-                <p class="number">1,342</p>
-            </div>
-            <div class="stat-box">
-                <h4>Pagos Procesados</h4>
-                <p class="number">892</p>
-            </div>
-            <div class="stat-box">
-                <h4>Vehículos Activos</h4>
-                <p class="number">567</p>
-            </div>
+        
+        <div class="footer">
+            <p><strong>Sistema DSI v1.0</strong> | Gestión Integral de Infracciones de Tránsito</p>
+            <p>&copy; 2024 - 2026 | Todos los derechos reservados</p>
         </div>
-    </div>
-
-    <div class="footer">
-        <p><strong>Sistema DSI v1.0</strong> | Gestión Integral de Infracciones de Tránsito</p>
-        <p>&copy; 2024 - 2026 | Todos los derechos reservados</p>
     </div>
 </body>
 </html>
