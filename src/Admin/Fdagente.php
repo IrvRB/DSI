@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Domicilio</title>
+    <title>Control Vehicular - Eliminar Agente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-    <form action="./delete/dagente.php" method="POST">
-        <label for="id_agente">ID del Agente a Eliminar:</label>
-        <input type="text" id="id_agente" name="id_agente" required>
-        <button type="submit">Eliminar Agente</button>
-    
+<body class="d-flex align-items-center justify-content-center min-vh-100 flex-column">
+    <div class="login-card shadow-lg p-4 p-md-5" style="max-width: 550px;">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Eliminar Agente</h2>
+            <p class="text-muted">Introduce el ID del agente que deseas eliminar.</p>
+        </div>
+        <form action="./delete/dagente.php" method="POST">
+            <div class="mb-4">
+                <label for="id_agente" class="form-label">ID del Agente</label>
+                <input type="text" class="form-control custom-input" id="id_agente" name="id_agente" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 btn-login fw-bold">Eliminar Agente</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

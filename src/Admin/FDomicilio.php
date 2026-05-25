@@ -5,84 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Vehicular - Domicilio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f4f7f6;
-        }
-        .card-custom {
-            max-width: 700px;
-            margin: 40px auto;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .btn-save {
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-        }
-        .btn-save:hover {
-            background-color: #1a252f;
-            color: white;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-
-    <div class="container">
-        <div class="card card-custom p-4">
-            <h2 class="text-center mb-4 fw-bold text-secondary">Registro de Domicilio</h2>
-            
-            <form action="entidades/IDomicilios.php" method="post">
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label small fw-bold">ID Domicilio</label>
-                        <input type="text" class="form-control" name="id_domicilio" placeholder="ID">
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <label class="form-label small fw-bold">Código Postal</label>
-                        <input type="text" class="form-control" name="cp" placeholder="76000">
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-                        <label class="form-label small fw-bold">Calle</label>
-                        <input type="text" class="form-control" name="calle" placeholder="Nombre de la vialidad">
-                    </div>
-
-                    <div class="col-6 col-md-3 mb-3">
-                        <label class="form-label small fw-bold">Núm. Exterior</label>
-                        <input type="text" class="form-control" name="num_ext">
-                    </div>
-                    <div class="col-6 col-md-3 mb-3">
-                        <label class="form-label small fw-bold">Núm. Interior</label>
-                        <input type="text" class="form-control" name="num_int" placeholder="Opcional">
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label small fw-bold">Colonia</label>
-                        <input type="text" class="form-control" name="colonia">
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label small fw-bold">Ciudad</label>
-                        <input type="text" class="form-control" name="ciudad">
-                    </div>
-
-                    <div class="col-md-6 mb-4">
-                        <label class="form-label small fw-bold">Estado</label>
-                        <input type="text" class="form-control" name="estado">
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-end gap-2">
-                    <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
-                    <button type="submit" class="btn btn-save px-4">Guardar Domicilio</button>
-                </div>
-            </form>
+<body class="d-flex align-items-center justify-content-center min-vh-100 flex-column">
+    <div class="login-card shadow-lg p-4 p-md-5" style="max-width: 750px;">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Registro de Domicilio</h2>
+            <p class="text-muted">Captura la dirección completa del domicilio.</p>
         </div>
+        <form action="entidades/IDomicilios.php" method="post">
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">ID Domicilio</label>
+                    <input type="text" class="form-control custom-input" name="id_domicilio" placeholder="ID">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Código Postal</label>
+                    <input type="text" class="form-control custom-input" name="cp" placeholder="76000">
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Calle</label>
+                    <input type="text" class="form-control custom-input" name="calle" placeholder="Nombre de la vialidad">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Núm. Exterior</label>
+                    <input type="text" class="form-control custom-input" name="num_ext">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Núm. Interior</label>
+                    <input type="text" class="form-control custom-input" name="num_int" placeholder="Opcional">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Colonia</label>
+                    <input type="text" class="form-control custom-input" name="colonia">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Ciudad</label>
+                    <input type="text" class="form-control custom-input" name="ciudad">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Estado</label>
+                    <input type="text" class="form-control custom-input" name="estado">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 btn-login fw-bold">Guardar Domicilio</button>
+        </form>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
