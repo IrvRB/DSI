@@ -1,0 +1,123 @@
+/* Estilos del Menú Principal - Tema Azul Profesional */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#header {
+    background: linear-gradient(135deg, #003D82 0%, #0056B3 100%);
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 61, 130, 0.3);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav > li {
+    float: left;
+    position: relative;
+}
+
+.nav li a {
+    background-color: #0056B3;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 18px;
+    display: block;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.nav li a:hover {
+    background-color: #003D82;
+    padding-left: 20px;
+}
+
+.nav li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background-color: #003D82;
+    box-shadow: 0 4px 12px rgba(0, 61, 130, 0.4);
+    z-index: 1000;
+}
+
+.nav li:hover > ul {
+    display: block;
+}
+
+.nav li ul li {
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav li ul li:last-child {
+    border-bottom: none;
+}
+
+.nav li ul li a {
+    padding: 11px 18px;
+    background-color: #003D82;
+}
+
+.nav li ul li a:hover {
+    background-color: #00284d;
+    padding-left: 22px;
+}
+
+.nav li ul li ul {
+    right: -200px;
+    top: 0px;
+    left: auto;
+    display: none;
+}
+
+.nav li ul li:hover > ul {
+    display: block;
+}
+
+.nav li ul li ul li a {
+    background-color: #00284d;
+}
+
+.nav li ul li ul li a:hover {
+    background-color: #001a33;
+}
+
+/* Iconos y estilos adicionales */
+.menu-icon {
+    margin-right: 8px;
+}
+
+.user-section {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.user-section a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.user-section a:hover {
+    background-color: #434343;
+}

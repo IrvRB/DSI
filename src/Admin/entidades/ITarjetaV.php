@@ -23,11 +23,23 @@ print('ID CentroV ='.$IdCentroV."<br>");
 print('ID TarjetaC ='.$IdTarjetaC."<br>");
 print('ID Pago ='.$IdPago."<br>");
 
+require_once('../assets/controlador.php');
+$IdTarjetaV = $_GET['IdTarjetaV'];
 try {
-    $sql = "INSERT INTO tarjetaVehicular (numLinea, vigencia, fechaExpiracion, horaEntrada, horaSalida, semestre, metodoAnalisisV, idCentroV, idTarjetaC, idPago) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$Num_linea, $Vigencia, $Fecha_exp, $Hora_entrada, $Hora_salida, $Semestre, $Met_analisisV, $IdCentroV, $IdTarjetaC, $IdPago]);
-    echo"Se agrego correctamente la tarjeta vehicular";
-} catch(PDOException $e){
-    echo "Error al insertar: " . $e->getMessage();
-}
+     
+        $sql = "INSERT INTO tarjetasV (numLinea, vigencia, fechaExp, horaEntrada, horaSalida, semestre, metAnalisisV, idCentroV, idTarjetaC, idPagos) 
+                VALUES ('$Num_linea', '$Vigencia', '$Fecha_exp', '$Hora_entrada', '$Hora_salida', '$Semestre', '$Met_analisisV', '$IdCentroV', '$IdTarjetaC', '$IdPago')";
+        
+        
+        $link = conectar(); 
+        
+       
+        $registro = ejecutar($link, $sql); 
+        
+        if ($registro) {
+            echo "Se agregó correctamente la tarjeta vehicular";
+        }
+    } catch (Exception $e) {
+        echo "Error al insertar: " . $e->getMessage();
+    }
+?>
