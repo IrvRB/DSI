@@ -1,33 +1,162 @@
+<?php
+// 1. Iniciar o reanudar sesión
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// 2. Si ya está logueado, redirigir según su tipo de cuenta
+if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
+    if ($_SESSION['tipo'] === 'A') {
+        header("Location: Admin/genKey.php");
+    } else {
+        header("Location: User/index.php"); // Redirección para usuarios estándar
+    }
+    exit;
+}
+
+$error_message = "";
+
+// 3. Procesar solicitudes POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Detectar si los datos vienen en JSON (Fetch del .key) o POST clásico
+    $input_data = json_decode(file_get_contents('php://input'), true);
+
+    $usuarioInput = $input_data['usuario'] ?? ($_POST['usuario'] ?? null);
+    $pwdInput = $input_data['password'] ?? ($_POST['password'] ?? null);
+    $keyContent = $input_data['keyContent'] ?? ($_POST['keyContent'] ?? null);
+    $isAjax = !empty($input_data);
+
+    // Conexión interna con tus datos exactos (Se remueve puerto si usas el alias 'db' de Docker)
+    $conn = new mysqli("db", "root", "root", "ControlVehicular2026");
+
+    try {
+        if ($conn->connect_error) {
+            throw new Exception("Error de conexión a la base de datos.");
+        }
+
+        // --- FLUJO A: ACCESO CON ARCHIVO .KEY ---
+        if (!empty($keyContent)) {
+            $tokenLlave = trim($keyContent);
+
+            // Buscamos al usuario por el token de su llave (asumiendo la columna 'llave_token')
+            $stmt = $conn->prepare("SELECT usuario, tipo, bloqueo, estado FROM Cuentas WHERE llave_token = ? LIMIT 1");
+            $stmt->bind_param("s", $tokenLlave);
+            $stmt->execute();
+            $cuenta = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            if ($cuenta) {
+                if ($cuenta['bloqueo'] == 1)
+                    throw new Exception('Tu cuenta se encuentra bloqueada.');
+                if ($cuenta['estado'] == 0)
+                    throw new Exception('Tu cuenta se encuentra inactiva.');
+
+                $_SESSION['usuario'] = $cuenta['usuario'];
+                $_SESSION['tipo'] = $cuenta['tipo'];
+
+                // Determinar ruta de redirección en Ajax
+                $redirect_to = ($cuenta['tipo'] === 'A') ? 'Admin/genKey.php' : 'User/index.php';
+
+                if ($isAjax) {
+                    header('Content-Type: application/json');
+                    echo json_encode(['status' => 'success', 'redirect' => $redirect_to]);
+                    exit;
+                }
+            } else {
+                throw new Exception('El archivo .key no corresponde a ninguna cuenta activa.');
+            }
+        }
+        // --- FLUJO B: ACCESO TRADICIONAL USUARIO/CONTRASEÑA ---
+        elseif (!empty($usuarioInput) && !empty($pwdInput)) {
+            $userClean = trim($usuarioInput);
+            $passClean = trim($pwdInput);
+
+            // Consulta para verificar usuario y contraseña en texto plano
+            $stmt = $conn->prepare("SELECT usuario, pwd, tipo, bloqueo, estado FROM Cuentas WHERE usuario = ? LIMIT 1");
+            $stmt->bind_param("s", $userClean);
+            $stmt->execute();
+            $cuenta = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            // Comparación directa de cadenas (según tus INSERTS actuales)
+            if ($cuenta && $passClean === $cuenta['pwd']) {
+                if ($cuenta['bloqueo'] == 1)
+                    throw new Exception('Tu cuenta se encuentra bloqueada.');
+                if ($cuenta['estado'] == 0)
+                    throw new Exception('Tu cuenta se encuentra inactiva.');
+
+                $_SESSION['usuario'] = $cuenta['usuario'];
+                $_SESSION['tipo'] = $cuenta['tipo'];
+
+                // Redirección del flujo clásico POST
+                if ($cuenta['tipo'] === 'A') {
+                    header("Location: views/dashboard.php");
+                } else {
+                    header("Location: User/index.php");
+                }
+                exit;
+            } else {
+                throw new Exception('Usuario o contraseña incorrectos.');
+            }
+        } else {
+            throw new Exception('Por favor, rellena todos los campos.');
+        }
+
+    } catch (Exception $e) {
+        if ($isAjax) {
+            header('Content-Type: application/json');
+            http_response_code(401);
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+            exit;
+        } else {
+            $error_message = $e->getMessage();
+        }
+    } finally {
+        if (isset($conn) && $conn)
+            $conn->close();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio de sesion</title>
+    <title>Inicio de sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="d-flex align-items-center justify-content-center vh-100">
+<body class="d-flex align-items-center justify-content-center vh-100 flex-column">
+
+    <div id="alertContainer" class="w-100 mb-3" style="max-width: 450px;">
+        <?php if (!empty($error_message)): ?>
+            <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert" style="border-radius: 12px;">
+                <strong>Error:</strong> <?php echo htmlspecialchars($error_message); ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+    </div>
 
     <div class="login-card shadow-lg p-4 p-md-5">
         <div class="text-center mb-4">
             <h2 class="fw-bold">Bienvenido</h2>
-            <p class="text-muted">Ingresa tus credenciales para continuar</p>
+            <p class="text-muted">Control Vehicular 2026</p>
         </div>
 
-        <form>
+        <form action="login.php" method="post">
             <div class="mb-3">
-                <label for="email" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control custom-input" id="email" placeholder="nombre@ejemplo.com"
-                    required>
+                <label for="usuario" class="form-label">Usuario</label>
+                <input type="text" class="form-control custom-input" id="usuario" name="usuario"
+                    placeholder="Nombre de usuario" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control custom-input" id="password" placeholder="••••••••" required>
+                <input type="password" class="form-control custom-input" id="password" name="password"
+                    placeholder="Contraseña" required>
             </div>
 
             <div class="d-flex justify-content-between mb-4">
@@ -40,17 +169,14 @@
 
             <button type="submit" class="btn btn-primary w-100 btn-login fw-bold">Iniciar Sesión</button>
         </form>
-        <!-- ... (debajo del botón de login principal) -->
 
         <div class="text-center my-3 text-muted">
             <small>— O —</small>
         </div>
 
         <div class="d-grid">
-            <!-- Input oculto -->
             <input type="file" id="keyFile" accept=".key" style="display: none;" onchange="handleFileSelect(this)">
 
-            <!-- Botón disparador -->
             <button type="button"
                 class="btn btn-outline-secondary d-flex align-items-center justify-content-center gap-2"
                 onclick="document.getElementById('keyFile').click()">
@@ -63,31 +189,62 @@
             </button>
             <div id="fileNameDisplay" class="text-center mt-2 small text-primary" style="display:none;"></div>
         </div>
-
     </div>
+
     <script>
+        function showAlert(message, type = 'danger') {
+            const container = document.getElementById('alertContainer');
+            container.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show shadow-sm" role="alert" style="border-radius: 12px;">
+                    <strong>${type === 'danger' ? 'Error:' : 'Éxito:'}</strong> ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+        }
+
         function handleFileSelect(input) {
             const file = input.files[0];
             const display = document.getElementById('fileNameDisplay');
 
             if (file) {
-                // Mostrar feedback visual del archivo cargado
                 display.innerText = `Archivo seleccionado: ${file.name}`;
                 display.style.display = 'block';
 
-                // Ejemplo: Leer el contenido del archivo si es necesario
                 const reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = async function (e) {
                     const content = e.target.result;
-                    console.log("Contenido de la llave cargado");
-                    // Aquí podrías disparar una función de validación o login
+
+                    try {
+                        const response = await fetch('login.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                keyContent: content
+                            })
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok && data.status === 'success') {
+                            showAlert('Llave correcta. Redirigiendo...', 'success');
+                            setTimeout(() => {
+                                window.location.href = data.redirect;
+                            }, 1000);
+                        } else {
+                            showAlert(data.message || 'Error al validar la llave.');
+                        }
+                    } catch (err) {
+                        console.error(err);
+                        showAlert('Error en la conexión con el servidor.');
+                    }
                 };
                 reader.readAsText(file);
             }
         }
     </script>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
