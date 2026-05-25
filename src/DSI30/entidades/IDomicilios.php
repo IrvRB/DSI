@@ -9,13 +9,21 @@ $Colonia = $_POST['colonia'];
 $Ciudad = $_POST['ciudad'];
 $Estado = $_POST['estado'];
 
-$sql = "INSERT INTO domicilios (colonia, calle, numeroInterior, numeroExterior, codigoPostal, ciudad, estado) VALUES (?, ?, ?, ?, ?, ?, ?);";
-$data = [$Colonia, $Calle, $Num_int, $Num_ext, $CP, $Ciudad, $Estado];
-$registro = ejecutar($sql, $data);
 
-if ($registro) {
-    echo "¡Domicilio registrado con éxito!";
-} else {
-    echo "Error: No se pudo registrar el domicilio.";
+$sql = "INSERT INTO domicilios (colonia, calle, numeroInterior, numeroExterior, codigoPostal, ciudad, estado) 
+        VALUES ('$Colonia', '$Calle', '$Num_int', '$Num_ext', '$CP', '$Ciudad', '$Estado')";
+
+try {
+   
+    $link = conectar(); 
+    
+    $registro = ejecutar($link, $sql); 
+    
+    if ($registro) {
+        echo "¡Domicilio registrado con éxito!";
+    } else {
+        echo "Error: No se pudo registrar el domicilio.";
+    }
+} catch (Exception $e) {
+    echo "Error al insertar el domicilio: " . $e->getMessage();
 }
-

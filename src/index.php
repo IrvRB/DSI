@@ -209,8 +209,8 @@
                     <li>
                         <a href="#">Domicilios</a>
                         <ul>
-                            <li><a href="DSI30/FdDomicilio.php">Insertar</a></li>
-                            <li><a href="DSI30/delete/dDomicilio.php">Eliminar</a></li>
+                            <li><a href="DSI30/FDomicilio.php">Insertar</a></li>
+                            <li><a href="DSI30/FdDomicilio.php">Eliminar</a></li>
                             <li><a href="DSI30/FdDomicilio.php">Ver</a></li>
                         </ul>
                     </li>

@@ -9,8 +9,6 @@ print('Asignación ='.$Asignacion."<br>");
 
 require_once('../assets/controlador.php');
 
-
-
 try {
 
     $sql = "INSERT INTO pagos (idPago, nombre, asignacion) 

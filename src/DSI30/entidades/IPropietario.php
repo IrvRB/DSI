@@ -8,11 +8,25 @@ print('Nombre ='.$Nombre."<br>");
 print('RFC ='.$RFC."<br>");
 print('ID Domicilio ='.$Iddomicilio."<br>");
 
+
+require_once '../assets/controlador.php';
+
+
+$sql = "INSERT INTO propietarios (nombre, rfc, idDomicilio) 
+        VALUES ('$Nombre', '$RFC', '$Iddomicilio')";
+
 try {
-    $sql = "INSERT INTO propietarios (nombre, rfc, idDomicilio) VALUES (?, ?, ?);";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$Nombre, $RFC, $Iddomicilio]);
-    echo"Se agrego correctamente el propietario";
-}catch(PDOException $e){
+   
+    $link = conectar(); 
+    
+   
+    $registro = ejecutar($link, $sql); 
+    
+    if ($registro) {
+        echo "¡Se agregó correctamente el propietario!";
+    } else {
+        echo "Error: No se pudo registrar al propietario.";
+    }
+} catch (Exception $e) { 
     echo "Error al insertar: " . $e->getMessage();
-}   
+}

@@ -19,12 +19,22 @@ echo "Restricciones = " . $Restricciones . "<br>";
 
 
 
-$sql = "INSERT INTO licencias (fechaExpedicion, antiguedad, tipo, restricciones, fechaVencimiento, idConductor) VALUES (?, ?, ?, ?, ?, ?)";
-$data = [$FechaExpedicion, $Antiguedad, $Tipo, $Restricciones, $FechaVencimiento, $Idconductor];
-$registro = ejecutar($sql, $data);
 
-if ($registro) {
-    echo "¡Licencia registrado con éxito!";
-} else {
-    echo "Error: No se pudo registrar la licencia.";
+$sql = "INSERT INTO licencias (fechaExpedicion, antiguedad, tipo, restricciones, fechaVencimiento, idConductor) 
+        VALUES ('$FechaExpedicion', '$Antiguedad', '$Tipo', '$Restricciones', '$FechaVencimiento', '$Idconductor')";
+
+try {
+  
+    $link = conectar(); 
+    
+   
+    $registro = ejecutar($link, $sql); 
+    
+    if ($registro) {
+        echo "¡Licencia registrada con éxito!";
+    } else {
+        echo "Error: No se pudo registrar la licencia.";
+    }
+} catch (Exception $e) {
+    echo "Error al insertar la licencia: " . $e->getMessage();
 }

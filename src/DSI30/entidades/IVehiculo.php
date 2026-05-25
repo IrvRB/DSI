@@ -19,11 +19,25 @@ print('Num Motor ='.$NumMotor."<br>");
 print('Puertas ='.$Puertas."<br>");
 print('Cilindros ='.$Cilindros."<br>");
 
+
+require_once '../assets/controlador.php';
+
+
+$sql = "INSERT INTO vehiculos (numSerie, marca, modelo, placa, tipoCombustible, color, numMotor, puertas, cilindros) 
+        VALUES ('$NumSerie', '$Marca', '$Modelo', '$Placa', '$TipoCombustible', '$Color', '$NumMotor', '$Puertas', '$Cilindros')";
+
 try {
-    $sql = "INSERT INTO vehiculos (numSerie, marca, modelo, placa, tipoCombustible, color, numMotor, puertas, cilindros) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$NumSerie, $Marca, $Modelo, $Placa, $TipoCombustible, $Color, $NumMotor, $Puertas, $Cilindros]);
-    echo"Se agrego correctamente el vehículo";
-} catch(PDOException $e){
+    
+    $link = conectar(); 
+    
+   
+    $registro = ejecutar($link, $sql); 
+    
+    if ($registro) {
+        echo "¡Se agregó correctamente el vehículo!";
+    } else {
+        echo "Error: No se pudo registrar el vehículo.";
+    }
+} catch (Exception $e) { // Cambiado a Exception general para MySQLi
     echo "Error al insertar: " . $e->getMessage();
 }
