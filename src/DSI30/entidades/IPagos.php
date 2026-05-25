@@ -7,11 +7,24 @@ print('ID Pago ='.$IdPago."<br>");
 print('Nombre ='.$Nombre."<br>");
 print('Asignación ='.$Asignacion."<br>");
 
+require_once('../assets/controlador.php');
+
+
+
 try {
-    $sql = "INSERT INTO pagos (nombre, asignacion) VALUES (?, ?);";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$Nombre, $Asignacion]);
-    echo"Se agrego correctamente el pago";
-} catch(PDOException $e){
-    echo "Error al insertar: " . $e->getMessage();
+
+    $sql = "INSERT INTO pagos (idPago, nombre, asignacion) 
+            VALUES ('$IdPago', '$Nombre', '$Asignacion')";
+
+    $link = conectar(); 
+    
+
+    $registro = ejecutar($link, $sql); 
+    
+    if ($registro) {
+        echo "¡Pago registrado con éxito! Ya puedes volver a intentar insertar la tarjeta vehicular.";
+    }
+} catch (Exception $e) {
+    echo "Error al insertar el pago: " . $e->getMessage();
 }
+?>
