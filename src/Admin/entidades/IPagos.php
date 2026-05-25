@@ -7,7 +7,7 @@ print('ID Pago ='.$IdPago."<br>");
 print('Nombre ='.$Nombre."<br>");
 print('Asignación ='.$Asignacion."<br>");
 
-require_once('../assets/controlador.php');
+require_once('../../DSI30/assets/controlador.php');
 
 try {
 

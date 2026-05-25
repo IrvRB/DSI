@@ -9,7 +9,7 @@ print('RFC ='.$RFC."<br>");
 print('ID Domicilio ='.$Iddomicilio."<br>");
 
 
-require_once '../assets/controlador.php';
+require_once '../../DSI30/assets/controlador.php';
 
 
 $sql = "INSERT INTO propietarios (nombre, rfc, idDomicilio) 

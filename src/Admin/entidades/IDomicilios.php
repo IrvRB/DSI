@@ -1,5 +1,5 @@
 <?php
-include '../assets/controlador.php';
+include '../../DSI30/assets/controlador.php';
 $IdDomicilio = $_POST['id_domicilio'];
 $CP = $_POST['cp'];
 $Calle = $_POST['calle'];

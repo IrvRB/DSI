@@ -1,6 +1,6 @@
 <?php
 
-require_once '../assets/controlador.php';
+require_once '../../DSI30/assets/controlador.php';
 $IdCentroV = $_POST['IdCentroV'];
 $Numero = $_POST['Numero'];
 $Nombre = $_POST['Nombre'];

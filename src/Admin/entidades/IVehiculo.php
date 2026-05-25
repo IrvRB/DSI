@@ -20,7 +20,7 @@ print('Puertas ='.$Puertas."<br>");
 print('Cilindros ='.$Cilindros."<br>");
 
 
-require_once '../assets/controlador.php';
+require_once '../../DSI30/assets/controlador.php';
 
 
 $sql = "INSERT INTO vehiculos (numSerie, marca, modelo, placa, tipoCombustible, color, numMotor, puertas, cilindros) 

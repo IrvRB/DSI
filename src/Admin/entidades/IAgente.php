@@ -1,5 +1,5 @@
 <?php
-require_once '../assets/controlador.php';
+require_once '../../DSI30/assets/controlador.php';
 
 $IdAgente = $_GET['idAgente'];
 $Nombre = $_GET['nombre'];

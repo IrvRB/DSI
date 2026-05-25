@@ -10,7 +10,7 @@ $IdPago = $_POST['idpago'];
 
 
 
-require_once '../assets/controlador.php';
+require_once '../../DSI30/assets/controlador.php';
 
 
 $sql = "INSERT INTO multas (fecha, hora, folio, reporteseccion, idtarjetacirculacion, idlicencia, idagente, idpago) 
