@@ -144,7 +144,7 @@
                         <a href="#">Agentes</a>
                         <ul>
                             <li><a href="Admin/Fagente.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dagente.php">Eliminar</a></li>
+                            <li><a href="Admin/Fdagente.php">Eliminar</a></li>
                             <li><a href="Admin/Fagente.php">Ver</a></li>
                         </ul>
                     </li>
@@ -152,7 +152,7 @@
                         <a href="#">Conductores</a>
                         <ul>
                             <li><a href="Admin/Fconductores.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dconductores.php">Eliminar</a></li>
+                            <li><a href="Admin/Fdconductores.php">Eliminar</a></li>
                             <li><a href="Admin/Fconductores.php">Ver</a></li>
                         </ul>
                     </li>
@@ -160,7 +160,7 @@
                         <a href="#">Propietarios</a>
                         <ul>
                             <li><a href="Admin/Fpropietario.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dpropietario.php">Eliminar</a></li>
+                            <li><a href="Admin/Fdpropietario.php">Eliminar</a></li>
                             <li><a href="Admin/Fpropietario.php">Ver</a></li>
                         </ul>
                     </li>
@@ -173,7 +173,7 @@
                         <a href="#">Vehículos</a>
                         <ul>
                             <li><a href="Admin/Fvehiculo.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dvehiculo.php">Eliminar</a></li>
+                            <li><a href="Admin/Fdvehiculo.php">Eliminar</a></li>
                             <li><a href="Admin/Fvehiculo.php">Ver</a></li>
                         </ul>
                     </li>
@@ -181,7 +181,7 @@
                         <a href="#">Tarjetas de Vehículo</a>
                         <ul>
                             <li><a href="Admin/FtarjetaV.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dtarjetaV.php">Eliminar</a></li>
+                            <li><a href="Admin/FdtarjetaV.php">Eliminar</a></li>
                             <li><a href="Admin/FtarjetaV.php">Ver</a></li>
                         </ul>
                     </li>
@@ -189,7 +189,7 @@
                         <a href="#">Licencias</a>
                         <ul>
                             <li><a href="Admin/Flicencias.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dlicencias.php">Eliminar</a></li>
+                            <li><a href="Admin/Fdlicencias.php">Eliminar</a></li>
                             <li><a href="Admin/Flicencias.php">Ver</a></li>
                         </ul>
                     </li>
@@ -202,7 +202,7 @@
                         <a href="#">Tarjetas de Circulación</a>
                         <ul>
                             <li><a href="Admin/FtarjetasC.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dtarjetasC.php">Eliminar</a></li>
+                            <li><a href="Admin/FdtarjetasC.php">Eliminar</a></li>
                             <li><a href="Admin/FtarjetasC.php">Ver</a></li>
                         </ul>
                     </li>
@@ -223,7 +223,7 @@
                         <a href="#">Multas</a>
                         <ul>
                             <li><a href="Admin/Fmulta.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dmulta.php">Eliminar</a></li>
+                            <li><a href="Admin/Fdmulta.php">Eliminar</a></li>
                             <li><a href="Admin/Fmulta.php">Ver</a></li>
                         </ul>
                     </li>
@@ -231,7 +231,7 @@
                         <a href="#">Pagos</a>
                         <ul>
                             <li><a href="Admin/Fpago.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dpago.php">Eliminar</a></li>
+                            <li><a href="Admin/Fdpago.php">Eliminar</a></li>
                             <li><a href="Admin/Fpago.php">Ver</a></li>
                         </ul>
                     </li>
@@ -244,7 +244,7 @@
                         <a href="#">Centros de Verificación</a>
                         <ul>
                             <li><a href="Admin/FcentrosV.php">Insertar</a></li>
-                            <li><a href="Admin/delete/dcentrosV.php">Eliminar</a></li>
+                            <li><a href="Admin/FdcentrosV.php">Eliminar</a></li>
                             <li><a href="Admin/FcentrosV.php">Ver</a></li>
                         </ul>
                     </li>

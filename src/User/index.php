@@ -62,18 +62,93 @@ $pagina_actual = basename($_SERVER['PHP_SELF']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Usuario - Control Vehicular 2026</title>
+    <title>Control Vehicular 2026</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(180deg, #e9f3ff 0%, #dceeff 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #content {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(13, 110, 253, 0.15);
+        }
+
+        h1 {
+            color: #0d6efd;
+            margin: 0;
+        }
+
+        h2 {
+            color: #0d6efd;
+        }
+
+        .dashboard-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 22px 24px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        .dashboard-header .eyebrow {
+            margin: 0 0 10px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.78);
+        }
+
+        .dashboard-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+
+        .dashboard-copy {
+            margin: 8px 0 0;
+            color: rgba(255, 255, 255, 0.82);
+            max-width: 700px;
+        }
+
+        .dashboard-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 160px;
+            padding: 10px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
         }
 
         .navbar-custom {
-            background-color: #1e293b;
+            background: linear-gradient(90deg, #0b5ed7, #0d6efd);
+        }
+
+        .toolbar-card {
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
         }
 
         .nav-tabs .nav-link {
@@ -90,20 +165,28 @@ $pagina_actual = basename($_SERVER['PHP_SELF']);
         }
 
         .card-table {
-            border-radius: 12px;
+            border-radius: 16px;
             border: none;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(148, 163, 184, 0.2);
         }
 
         .table th {
             background-color: #f1f5f9;
             color: #334155;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8fbff;
         }
     </style>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm mb-4">
         <div class="container-fluid px-4">
             <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
@@ -129,10 +212,10 @@ $pagina_actual = basename($_SERVER['PHP_SELF']);
         </div>
     </nav>
 
-    <div class="container-fluid px-4">
+    <div id="content">
         <div class="row">
             <div class="col-12 mb-3">
-                <div class="card shadow-sm p-3 bg-white" style="border-radius: 10px;">
+                <div class="card shadow-sm p-3 bg-white toolbar-card">
                     <form method="GET" action="<?php echo $pagina_actual; ?>" class="row g-2 align-items-center">
                         <input type="hidden" name="tab" value="<?php echo htmlspecialchars($tab_activa); ?>">
 

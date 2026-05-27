@@ -1,22 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propietarios</title>
-</head>
-<body>
-    <form action="entidades/IConductor.php" method="post">
-        <h1>Conductor</h1>
-        <label for="idConductor">Id Conductor</label>
-        <input type="text" name="idConductor" id="idConductor">
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre">
-        <label for="numEmergenica">Numero Emergencia</label>
-        <input type="text" name="numEmergenica" id="numEmergenica">
-        <label for="idDomicilio">Id domicilio</label>
-        <input type="text" name="idDomicilio" id="idDomicilio">
-        <button type="submit">Enviar</button>
-    </form>
-</body>
-</html>
+<?php
+include '../../DSI30/assets/controlador.php';
+
+if (!isset($_POST['id_conductor'])) {
+    header("Location: ../Fdconductores.php");
+    exit();
+}
+
+$id_conductor = $_POST['id_conductor'];
+$link = conectar();
+
+if (!$link) {
+    header("Location: ../Fdconductores.php");
+    exit();
+}
+
+$sql = "DELETE FROM conductores WHERE idConductor = ?";
+$stmt = mysqli_prepare($link, $sql);
+
+if (!$stmt) {
+    mysqli_close($link);
+    header("Location: ../Fdconductores.php");
+    exit();
+}
+
+$bind = mysqli_stmt_bind_param($stmt, "i", $id_conductor);
+
+if (!$bind) {
+    mysqli_stmt_close($stmt);
+    mysqli_close($link);
+    header("Location: ../Fdconductores.php");
+    exit();
+}
+
+$registro = mysqli_stmt_execute($stmt);
+
+if (!$registro) {
+    $error = mysqli_stmt_error($stmt);
+    mysqli_stmt_close($stmt);
+    mysqli_close($link);
+    header("Location: ../Fdconductores.php");
+    exit();
+}
+
+mysqli_stmt_close($stmt);
+mysqli_close($link);
+
+if ($registro) {
+    header("Location: ../registro_exitoso.php");
+    exit();
+}

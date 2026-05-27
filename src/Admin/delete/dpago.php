@@ -1,20 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagos</title>
-</head>
-<body>
-    <form action="entidades/IPagos.php" method="post">
-        <h1>Pagos</h1>
-        <label for="">Id pago</label>
-        <input type="text" name="idpago" id="idpago">
-        <label for="">Nombre</label>
-        <input type="text" name="nombre" id="nombre">
-        <label for="">Asignacion</label>
-        <input type="text" name="asignacion" id="asignacion">
-        <button type="submit">Enviar</button>
-    </form>
-</body>
-</html>
+<?php
+include '../../DSI30/assets/controlador.php';
+
+if (!isset($_POST['id_pago'])) {
+    header("Location: ../Fdpago.php");
+    exit();
+}
+
+$id_pago = $_POST['id_pago'];
+$link = conectar();
+
+if (!$link) {
+    header("Location: ../Fdpago.php");
+    exit();
+}
+
+$sql = "DELETE FROM pagos WHERE idPago = ?";
+$stmt = mysqli_prepare($link, $sql);
+
+if (!$stmt) {
+    mysqli_close($link);
+    header("Location: ../Fdpago.php");
+    exit();
+}
+
+$bind = mysqli_stmt_bind_param($stmt, "i", $id_pago);
+
+if (!$bind) {
+    mysqli_stmt_close($stmt);
+    mysqli_close($link);
+    header("Location: ../Fdpago.php");
+    exit();
+}
+
+$registro = mysqli_stmt_execute($stmt);
+
+if (!$registro) {
+    $error = mysqli_stmt_error($stmt);
+    mysqli_stmt_close($stmt);
+    mysqli_close($link);
+    header("Location: ../Fdpago.php");
+    exit();
+}
+
+mysqli_stmt_close($stmt);
+mysqli_close($link);
+
+if ($registro) {
+    header("Location: ../registro_exitoso.php");
+    exit();
+}
