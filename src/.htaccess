@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 ErrorDocument 404 /login.php
 ErrorDocument 403 /login.php
+=======
+
+ErrorDocument 404 http://localhost:8080/login.php
+ErrorDocument 403 http://localhost:8080/login.php
+>>>>>>> d13993d97913c41dbd04e81f0bc9a2d57b8662a4
