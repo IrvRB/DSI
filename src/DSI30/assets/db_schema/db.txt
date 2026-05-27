@@ -177,10 +177,19 @@ CREATE TABLE Cuentas(
     tipo char(1) NOT NULL,
     bloqueo boolean NOT NULL,
     estado boolean NOT NULL,
-    intentos tinyint NOT NULL
+    intentos tinyint NOT NULL,
+    llave_token varchar(64) DEFAULT NULL
 );
 INSERT INTO Cuentas VALUES ('Juan', 'J1234', 'A', '0', '1', '0');
 INSERT INTO Cuentas VALUES ('Oscar', '01234', 'U', '0', '1', '0');
 INSERT INTO Cuentas VALUES ('Maria', 'M1234', 'A', '1', '1', '0');
 INSERT INTO Cuentas VALUES ('Gloria', 'G1234', 'U', '0', '0', '0');
 INSERT INTO Cuentas VALUES ('Daniel', 'D1234', 'A', '1', '0', '0');
+
+
+INSERT INTO `Cuentas` (`usuario`, `pwd`, `tipo`, `bloqueo`, `estado`, `intentos`, `llave_token`) VALUES
+('Daniel', 'D1234', 'A', 1, 0, 0, NULL),
+('Gloria', 'G1234', 'U', 0, 0, 0, NULL),
+('Juan', 'J1234', 'A', 0, 1, 0, '71943c0da97c9b54bf41ccba7036a35fbc21d288787101552c7e8e832757b4aa'),
+('Maria', 'M1234', 'A', 1, 1, 0, NULL),
+('Oscar', '01234', 'U', 0, 1, 0, NULL);
