@@ -1,3 +1,6 @@
+<?php
+require_once 'val.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>

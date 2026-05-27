@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // 2. Si ya está logueado, redirigir según su tipo de cuenta
 if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
     if ($_SESSION['tipo'] === 'A') {
-        header("Location: Admin/genKey.php");
+        header("Location: Admin/");
     } else {
         header("Location: User/index.php"); // Redirección para usuarios estándar
     }
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['tipo'] = $cuenta['tipo'];
 
                 // Determinar ruta de redirección en Ajax
-                $redirect_to = ($cuenta['tipo'] === 'A') ? 'Admin/genKey.php' : 'User/index.php';
+                $redirect_to = ($cuenta['tipo'] === 'A') ? 'Admin/' : 'User/index.php';
 
                 if ($isAjax) {
                     header('Content-Type: application/json');
@@ -163,7 +163,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input class="form-check-input" type="checkbox" id="remember">
                     <label class="form-check-label text-muted" for="remember">Recuérdame</label>
                 </div>
-                <a href="#" class="text-decoration-none small">¿Olvidaste tu contraseña?</a>
             </div>
 
             <button type="submit" class="btn btn-primary w-100 btn-login fw-bold">Iniciar Sesión</button>
