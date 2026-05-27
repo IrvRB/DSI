@@ -1,58 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propietarios</title>
+    <title>Control Vehicular - Tarjetas de Verificación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-    <form action="entidades/ITarjetaV.php" method="get">
-        <h1>Tarjetas de verificacion</h1>
-        <div>
-            <label for="IdTarjetaV">IdTarjetaV</label>
-            <input type="text" name="IdTarjetaV" id="IdTarjetaV">
+<body class="d-flex align-items-center justify-content-center min-vh-100 flex-column">
+    <div class="login-card shadow-lg p-4 p-md-5" style="max-width: 900px;">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Tarjetas de Verificación</h2>
+            <p class="text-muted">Registro de tarjeta de verificación.</p>
         </div>
-        <div>
-            <label for="Num_linea">Num_linea</label>
-            <input type="text" name="Num_linea" id="Num_linea">
-        </div>
-        <div>
-            <label for="Vigencia">Vigencia</label>
-            <input type="text" name="Vigencia" id="Vigencia">
-        </div>
-        <div>
-            <label for="Fecha_exp">Fecha_exp</label>
-            <input type="date" name="Fecha_exp" id="Fecha_exp">
-        </div>
-        <div>
-            <label for="Hora_entrada">Hora_entrada</label>
-            <input type="time" name="Hora_entrada" id="Hora_entrada">
-        </div>
-        <div>
-            <label for="Hora_salida">Hora_salida</label>
-            <input type="time" name="Hora_salida" id="Hora_salida">
-        </div>
-        <div>
-            <label for="Semestre">Semestre</label>
-            <input type="number" name="Semestre" id="Semestre" step="1">
-        </div>
-        <div>
-            <label for="Met_analisisV">Met_analisisV</label>
-            <input type="text" name="Met_analisisV" id="Met_analisisV">
-        </div>
-        <div>
-            <label for="IdCentroV">IdCentroV</label>
-            <input type="number" name="IdCentroV" id="IdCentroV">
-        </div>
-        <div>
-            <label for="IdTarjetaC">IdTarjetaC</label>
-            <input type="number" name="IdTarjetaC" id="IdTarjetaC">
-        </div>
-        <div>
-            <label for="IdPago">IdPago</label>
-            <input type="number" name="IdPago" id="IdPago">
-        </div>
-        <button type="submit" class="btn btn-primary">Registrar Tarjeta</button>
-    </form>
+        <form action="entidades/ITarjetaV.php" method="get">
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">ID Tarjeta V</label>
+                    <input type="text" class="form-control custom-input" name="IdTarjetaV">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Número de Línea</label>
+                    <input type="text" class="form-control custom-input" name="Num_linea">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Vigencia</label>
+                    <input type="text" class="form-control custom-input" name="Vigencia">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Fecha Exp.</label>
+                    <input type="date" class="form-control custom-input" name="Fecha_exp">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Hora Entrada</label>
+                    <input type="time" class="form-control custom-input" name="Hora_entrada">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Hora Salida</label>
+                    <input type="time" class="form-control custom-input" name="Hora_salida">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Semestre</label>
+                    <input type="number" class="form-control custom-input" name="Semestre" step="1" min="1">
+                </div>
+                <div class="col-md-8">
+                    <label class="form-label">Método de Análisis</label>
+                    <input type="text" class="form-control custom-input" name="Met_analisisV">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">ID Centro V</label>
+                    <input type="number" class="form-control custom-input" name="IdCentroV">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">ID Tarjeta C</label>
+                    <input type="number" class="form-control custom-input" name="IdTarjetaC">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">ID Pago</label>
+                    <input type="number" class="form-control custom-input" name="IdPago">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 btn-login fw-bold">Registrar Tarjeta</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

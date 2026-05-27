@@ -1,50 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehiculos</title>
+    <title>Control Vehicular - Vehículos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-    <form action="entidades/IVehiculo.php" method="post">
-        <h1>Vehiculos</h1>
-        <div>
-            <label for="NumSerie">NumSerie</label>
-            <input type="text" name="numSerie" id="NumSerie">
+<body class="d-flex align-items-center justify-content-center min-vh-100 flex-column">
+    <div class="login-card shadow-lg p-4 p-md-5" style="max-width: 750px;">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Registro de Vehículos</h2>
+            <p class="text-muted">Captura los datos básicos del vehículo.</p>
         </div>
-        <div>
-            <label for="marca">marca</label>
-            <input type="text" name="marca" id="marca">
-        </div>
-        <div>
-            <label for="modelo">modelo</label>
-            <input type="text" name="modelo" id="modelo">
-        </div>
-        <div>
-            <label for="placa">placa</label>
-            <input type="text" name="placa" id="placa">
-        </div>
-        <div>
-            <label for="tipoCombustible">tipoCombustible</label>
-            <input type="text" name="tipoCombustible" id="tipoCombustible">
-        </div>
-        <div>
-            <label for="color">color</label>
-            <input type="text" name="color" id="color">
-        </div>
-        <div>
-            <label for="nummotor">nummotor</label>
-            <input type="text" name="nummotor" id="nummotor">
-        </div>
-        <div>
-            <label for="puertas">puertas</label>
-            <input type="number" name="puertas" id="puertas" step="1">
-        </div>
-        <div>
-            <label for="cilindros">cilindros</label>
-            <input type="number" name="cilindros" id="cilindros" step="1">
-        </div>
-        <button type="submit">Enviar</button>
-    </form>
+        <form action="entidades/IVehiculo.php" method="post">
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Número de Serie</label>
+                    <input type="text" class="form-control custom-input" name="numSerie" id="NumSerie">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Marca</label>
+                    <input type="text" class="form-control custom-input" name="marca" id="marca">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Modelo</label>
+                    <input type="text" class="form-control custom-input" name="modelo" id="modelo">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Placa</label>
+                    <input type="text" class="form-control custom-input" name="placa" id="placa">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tipo de Combustible</label>
+                    <input type="text" class="form-control custom-input" name="tipoCombustible" id="tipoCombustible">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Color</label>
+                    <input type="text" class="form-control custom-input" name="color" id="color">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Número de Motor</label>
+                    <input type="text" class="form-control custom-input" name="nummotor" id="nummotor">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Puertas</label>
+                    <input type="number" class="form-control custom-input" name="puertas" id="puertas" step="1" min="1">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Cilindros</label>
+                    <input type="number" class="form-control custom-input" name="cilindros" id="cilindros" step="1" min="1">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 btn-login fw-bold">Enviar</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
