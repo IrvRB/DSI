@@ -1,2 +1,0 @@
-ErrorDocument 404 /login.php
-ErrorDocument 403 /login.php
