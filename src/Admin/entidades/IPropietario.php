@@ -3,11 +3,6 @@ $Idpropietario = $_POST['Idpropietario'];
 $Nombre = $_POST['Nombre'];
 $RFC = $_POST['RFC'];
 $Iddomicilio = $_POST['Iddomicilio'];
-print('ID Propietario ='.$Idpropietario."<br>");
-print('Nombre ='.$Nombre."<br>");
-print('RFC ='.$RFC."<br>");
-print('ID Domicilio ='.$Iddomicilio."<br>");
-
 
 require_once '../../DSI30/assets/controlador.php';
 

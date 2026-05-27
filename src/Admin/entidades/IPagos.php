@@ -3,10 +3,6 @@ $IdPago = $_POST['idpago'];
 $Nombre = $_POST['nombre'];
 $Asignacion = $_POST['asignacion'];
 
-print('ID Pago ='.$IdPago."<br>");
-print('Nombre ='.$Nombre."<br>");
-print('Asignación ='.$Asignacion."<br>");
-
 require_once('../../DSI30/assets/controlador.php');
 
 try {

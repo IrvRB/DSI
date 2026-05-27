@@ -9,10 +9,9 @@ function conectar(){
     $con =mysqli_connect($servidor, $usuario, $pwd, $db);
 
     if (!$con) {
-        echo "Error en la conexión: " . mysqli_connect_error();
         return null;
     }
-    echo "¡Conexión exitosa a la base de datos!";
+
     return $con;
 } 
 
@@ -21,7 +20,6 @@ function ejecutar($con, $sql, $params = []){
     $resultado=mysqli_query($con, $sql);
 
     if(!$resultado){
-        echo "Error en la consulta: " . mysqli_error($con);
         return null;
     }
 

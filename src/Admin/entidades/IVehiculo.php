@@ -9,17 +9,6 @@ $NumMotor = $_POST['nummotor'];
 $Puertas = $_POST['puertas'];
 $Cilindros = $_POST['cilindros'];
 
-print('NumSerie ='.$NumSerie."<br>");
-print('Marca ='.$Marca."<br>");
-print('Modelo ='.$Modelo."<br>");
-print('Placa ='.$Placa."<br>");
-print('Tipo Combustible ='.$TipoCombustible."<br>");
-print('Color ='.$Color."<br>");
-print('Num Motor ='.$NumMotor."<br>");
-print('Puertas ='.$Puertas."<br>");
-print('Cilindros ='.$Cilindros."<br>");
-
-
 require_once '../../DSI30/assets/controlador.php';
 
 

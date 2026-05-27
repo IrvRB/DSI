@@ -11,18 +11,6 @@ $IdCentroV = $_GET['IdCentroV'];
 $IdTarjetaC = $_GET['IdTarjetaC'];
 $IdPago = $_GET['IdPago'];
 
-print('ID TarjetaV ='.$IdTarjetaV."<br>");
-print('Num_linea ='.$Num_linea."<br>");
-print('Vigencia ='.$Vigencia."<br>");
-print('Fecha_exp ='.$Fecha_exp."<br>");
-print('Hora_entrada ='.$Hora_entrada."<br>");
-print('Hora_salida ='.$Hora_salida."<br>");
-print('Semestre ='.$Semestre."<br>");
-print('Met_analisisV ='.$Met_analisisV."<br>");
-print('ID CentroV ='.$IdCentroV."<br>");
-print('ID TarjetaC ='.$IdTarjetaC."<br>");
-print('ID Pago ='.$IdPago."<br>");
-
 require_once('../../DSI30/assets/controlador.php');
 $IdTarjetaV = $_GET['IdTarjetaV'];
 try {
