@@ -20,7 +20,8 @@ try {
     $registro = ejecutar($link, $sql); 
     
     if ($registro) {
-        echo "¡Domicilio registrado con éxito!";
+        header("Location: ../registro_exitoso.php");
+        exit();
     } else {
         echo "Error: No se pudo registrar el domicilio.";
     }

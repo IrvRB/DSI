@@ -20,7 +20,8 @@ try {
     $registro = ejecutar($link, $sql); 
     
     if ($registro) {
-        echo "¡Pago registrado con éxito! Ya puedes volver a intentar insertar la tarjeta vehicular.";
+        header("Location: ../registro_exitoso.php");
+        exit();
     }
 } catch (Exception $e) {
     echo "Error al insertar el pago: " . $e->getMessage();

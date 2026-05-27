@@ -296,6 +296,14 @@
                 <h3>Tarjetas de Circulación</h3>
                 <p>Tarjetas de circulación vehicular</p>
             </a>
+            <a href="Admin/FDomicilio.php" class="card">
+                <h3>Domicilios</h3>
+                <p>Gestión de domicilios registrados</p>
+            </a>
+            <a href="Admin/FtarjetaV.php" class="card">
+                <h3>Tarjetas de Verificación</h3>
+                <p>Tarjetas de verificación vehicular</p>
+            </a>
             <a href="Admin/FcentrosV.php" class="card">
                 <h3>Centros de Verificación</h3>
                 <p>Centros de verificación y control</p>

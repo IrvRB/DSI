@@ -34,7 +34,8 @@ try {
     $registro = ejecutar($link, $sql); 
     
     if ($registro) {
-        echo "¡Se agregó correctamente el vehículo!";
+        header("Location: ../registro_exitoso.php");
+        exit();
     } else {
         echo "Error: No se pudo registrar el vehículo.";
     }

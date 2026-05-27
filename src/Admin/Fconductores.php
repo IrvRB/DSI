@@ -1,22 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propietarios</title>
+    <title>Control Vehicular - Conductores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #e9ecef; }
+        .card { border-radius: 1rem; border: none; }
+        .header-custom { 
+            background: #0d6efd; 
+            color: white; 
+            border-radius: 1rem 1rem 0 0; 
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <form action="entidades/IConductor.php" method="post">
-        <h1>Conductor</h1>
-        <label for="idConductor">Id Conductor</label>
-        <input type="text" name="idConductor" id="idConductor">
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre">
-        <label for="numEmergenica">Numero Emergencia</label>
-        <input type="text" name="numEmergenica" id="numEmergenica">
-        <label for="idDomicilio">Id domicilio</label>
-        <input type="text" name="idDomicilio" id="idDomicilio">
-        <button type="submit">Enviar</button>
-    </form>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow">
+                <div class="header-custom text-center">
+                    <h2 class="mb-0">Registro de Conductores</h2>
+                    <small>Sistema de Control Vehicular</small>
+                </div>
+                <div class="card-body p-4">
+                    <form action="entidades/IConductor.php" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="idConductor" class="form-label fw-semibold">ID Conductor</label>
+                                <input type="text" class="form-control" name="idConductor" id="idConductor" placeholder="Ej. 1001">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label fw-semibold">Nombre</label>
+                                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre completo">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="numEmergenica" class="form-label fw-semibold">Número de Emergencia</label>
+                                <input type="text" class="form-control" name="numEmergenica" id="numEmergenica" placeholder="Ej. 5512345678">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="idDomicilio" class="form-label fw-semibold">ID Domicilio</label>
+                                <input type="text" class="form-control" name="idDomicilio" id="idDomicilio" placeholder="Ej. 12">
+                            </div>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Guardar Conductor</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -28,7 +28,8 @@ try {
     $sql = "INSERT INTO tarjetaCirculacion (vigencia, folio, uso, rpa, firmaAutorizada, fechaExpiracion, tipoServicio, holograma, numSerie, idPropietario, idPago) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$Vigencia, $Folio, $Uso, $Rpa, $Firmaaut, $Fechaexp, $Tiposervicio, $Holograma, $Numserie, $Idpropietario, $Idpago]);
-    echo"Se agrego correctamente la tarjeta de circulación";
+    header("Location: ../registro_exitoso.php");
+    exit();
 } catch(PDOException $e){
     echo "Error al insertar: " . $e->getMessage();
 }

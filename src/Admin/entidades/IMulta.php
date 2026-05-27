@@ -3,7 +3,7 @@ $Fecha = $_POST['fecha'];
 $Hora = $_POST['hora'];
 $Folio = $_POST['folio'];
 $ReporteSeccion = $_POST['reporteseccion'];
-$IdTarjetaCirculacion = $_POST['idtarjetacirculacion'];
+$IdTarjetaCirculacion = $_POST['idTarjetaC'];
 $IdLicencia = $_POST['idlicencia'];
 $IdAgente = $_POST['idagente'];
 $IdPago = $_POST['idpago'];
@@ -13,7 +13,7 @@ $IdPago = $_POST['idpago'];
 require_once '../../DSI30/assets/controlador.php';
 
 
-$sql = "INSERT INTO multas (fecha, hora, folio, reporteseccion, idtarjetacirculacion, idlicencia, idagente, idpago) 
+$sql = "INSERT INTO multas (fecha, hora, folio, reporteseccion, idTarjetac, idlicencia, idagente, idpago) 
         VALUES ('$Fecha', '$Hora', '$Folio', '$ReporteSeccion', '$IdTarjetaCirculacion', '$IdLicencia', '$IdAgente', '$IdPago')";
 
 try {
@@ -24,7 +24,8 @@ try {
     $registro = ejecutar($link, $sql); 
     
     if ($registro) {
-        echo "¡Multa guardada correctamente!";
+        header("Location: ../registro_exitoso.php");
+        exit();
     } else {
         echo "Error: No se pudo registrar la multa.";
     }

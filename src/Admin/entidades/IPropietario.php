@@ -23,7 +23,8 @@ try {
     $registro = ejecutar($link, $sql); 
     
     if ($registro) {
-        echo "¡Se agregó correctamente el propietario!";
+        header("Location: ../registro_exitoso.php");
+        exit();
     } else {
         echo "Error: No se pudo registrar al propietario.";
     }

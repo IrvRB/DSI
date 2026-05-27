@@ -37,7 +37,8 @@ try {
         $registro = ejecutar($link, $sql); 
         
         if ($registro) {
-            echo "Se agregó correctamente la tarjeta vehicular";
+            header("Location: ../registro_exitoso.php");
+            exit();
         }
     } catch (Exception $e) {
         echo "Error al insertar: " . $e->getMessage();
