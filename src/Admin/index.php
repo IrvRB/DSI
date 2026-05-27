@@ -254,7 +254,7 @@
             </li>
             <li class="user-section">
                 <a href="#" title="Perfil">Perfil</a>
-                <a href="login.php" title="Cerrar sesión">Salir</a>
+                <a href="../logout.php" title="Cerrar sesión">Salir</a>
             </li>
         </ul>
     </div>
