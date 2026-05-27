@@ -1,6 +1,6 @@
 <?php
 
-require_once '../assets/controlador.php';
+require_once '../../DSI30/assets/controlador.php';
 $Idconductor = $_POST['idConductor'];
 $Nombre = $_POST['nombre'];
 $NumEmergenica = $_POST['numEmergenica'];
@@ -10,13 +10,21 @@ print('Nombre ='.$Nombre."<br>");
 print('Numero Emergencia ='.$NumEmergenica."<br>");
 print('ID Domicilio ='.$IdDomicilio."<br>");
 
-$sql = "INSERT INTO conductores (nombre, idDomicilio) VALUES (?, ?);";
-$data = [$Nombre, $IdDomicilio];
-$registro = ejecutar($sql, $data);
 
-if ($registro) {
-    echo "¡Conductor registrado con éxito!";
-} else {
-    echo "Error: No se pudo registrar el conductor.";
+
+$sql = "INSERT INTO conductores (nombre, idDomicilio) VALUES ('$Nombre', '$IdDomicilio')";
+
+try {
+
+    $link = conectar(); 
+
+    $registro = ejecutar($link, $sql); 
+    
+    if ($registro) {
+        echo "¡Conductor registrado con éxito!";
+    } else {
+        echo "Error: No se pudo registrar el conductor.";
+    }
+} catch (Exception $e) {
+    echo "Error al insertar el conductor: " . $e->getMessage();
 }
-

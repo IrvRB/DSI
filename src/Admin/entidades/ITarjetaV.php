@@ -23,7 +23,7 @@ print('ID CentroV ='.$IdCentroV."<br>");
 print('ID TarjetaC ='.$IdTarjetaC."<br>");
 print('ID Pago ='.$IdPago."<br>");
 
-require_once('../assets/controlador.php');
+require_once('../../DSI30/assets/controlador.php');
 $IdTarjetaV = $_GET['IdTarjetaV'];
 try {
      

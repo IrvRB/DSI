@@ -1,5 +1,5 @@
 <?php
-require_once '../assets/controlador.php';
+require_once '../../DSI30/assets/controlador.php';
 
 $IdAgente = $_GET['idAgente'];
 $Nombre = $_GET['nombre'];
@@ -8,12 +8,22 @@ print('ID Agente ='.$IdAgente."<br>");
 print('Nombre ='.$Nombre."<br>");
 print('Asignación ='.$Asignacion."<br>");
 
-$sql = "INSERT INTO agentes (nombre, asignacion) VALUES (?, ?);";
-$data = [$Nombre, $Asignacion];
-$registro = ejecutar($sql, $data);
 
-if ($registro) {
-    echo "¡Agente registrado con éxito!";
-} else {
-    echo "Error: No se pudo registrar el agente.";
+
+$sql = "INSERT INTO agentes (nombre, asignacion) VALUES ('$Nombre', '$Asignacion')";
+
+try {
+   
+    $link = conectar(); 
+    
+    
+    $registro = ejecutar($link, $sql); 
+    
+    if ($registro) {
+        echo "¡Agente registrado con éxito!";
+    } else {
+        echo "Error: No se pudo registrar el agente.";
+    }
+} catch (Exception $e) {
+    echo "Error al insertar el agente: " . $e->getMessage();
 }

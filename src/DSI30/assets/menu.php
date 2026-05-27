@@ -118,8 +118,8 @@ if (strpos($_SERVER['PHP_SELF'], '/DSI30/') !== false) {
                     <li>
                         <a href="#">Domicilios</a>
                         <ul>
-                            <li><a href="<?php echo $base_path; ?>/FdDomicilio.php">Insertar</a></li>
-                            <li><a href="<?php echo $base_path; ?>/delete/dDomicilio.php">Eliminar</a></li>
+                            <li><a href="<?php echo $base_path; ?>/FDomicilio.php">Insertar</a></li>
+                            <li><a href="<?php echo $base_path; ?>/FdDomicilio.php">Eliminar</a></li>
                             <li><a href="<?php echo $base_path; ?>/FdDomicilio.php">Ver</a></li>
                         </ul>
                     </li>

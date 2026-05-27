@@ -16,9 +16,8 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['tipo'])) {
 
 $error_message = "";
 
-// 3. Procesar solicitudes POST
+// Procesar solicitudes POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Detectar si los datos vienen en JSON (Fetch del .key) o POST clásico
     $input_data = json_decode(file_get_contents('php://input'), true);
 
     $usuarioInput = $input_data['usuario'] ?? ($_POST['usuario'] ?? null);
@@ -90,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Redirección del flujo clásico POST
                 if ($cuenta['tipo'] === 'A') {
-                    header("Location: views/dashboard.php");
+                    header("Location: Admin/index.php");
                 } else {
                     header("Location: User/index.php");
                 }
